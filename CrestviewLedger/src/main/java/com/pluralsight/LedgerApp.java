@@ -18,21 +18,22 @@ public class LedgerApp {
         switch (choice) {
             case "D":
                 // TODO: Call method to add a deposit
-                System.out.println("Add Deposit selected.");
+                System.out.println("Add Deposit selected.\n");
+                InputHelper.addDeposit();
                 break;
             case "P":
                 // TODO: Call method to make a payment
-                System.out.println("Make Payment selected.");
+                System.out.println("Make Payment selected.\n");
                 break;
             case "L":
                 // TODO: Call method to view ledger
-                System.out.println("View Ledger selected.");
+                System.out.println("View Ledger selected.\n");
                 break;
             case "X":
                 System.out.println("Exiting Crestview Ledger. Goodbye!");
                 break;
             default:
-                System.out.println("Invalid selection. Please try again.");
+                System.out.println("Invalid selection. Please try again.\n");
         }
     }
 }
