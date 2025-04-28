@@ -35,4 +35,35 @@ public class InputHelper {
             System.out.println("Error: " + e.getMessage());
         }
     }
+
+    public static void makePayment() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter description: ");
+        String description = scanner.nextLine();
+
+        System.out.print("Enter vendor: ");
+        String vendor = scanner.nextLine();
+
+        System.out.print("Enter payment amount: ");
+        double amount = Double.parseDouble(scanner.nextLine());
+
+        if (amount > 0) {
+            amount = -amount;
+        }
+
+        String date = LocalDate.now().toString();
+        String time = LocalTime.now().withNano(0).toString(); // remove nanoseconds
+
+        String newEntry = date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
+
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("data/transactions.csv", true))) {
+            writer.newLine();
+            writer.write(newEntry);
+            System.out.println("Payment recorded successfully!");
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 }
