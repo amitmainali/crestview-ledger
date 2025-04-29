@@ -24,18 +24,23 @@ public class LedgerView {
 
         switch (choice) {
             case "A":
+                System.out.println("View All Entries selected.\n");
                 displayAllEntries();
                 break;
             case "D":
+                System.out.println("View Deposits selected.\n");
                 displayDeposits();
                 break;
             case "P":
+                System.out.println("View Payments selected.\n");
                 displayPayments();
                 break;
             case "R":
-//                ReportGenerator.showReportScreen();
+                System.out.println("View Reports selected.");
+                ReportGenerator.showReportScreen();
                 break;
             case "H":
+                System.out.println("Return Home selected.");
                 LedgerApp.showHomeScreen();
                 break;
             default:

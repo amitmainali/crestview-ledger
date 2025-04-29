@@ -17,17 +17,14 @@ public class LedgerApp {
 
         switch (choice) {
             case "D":
-                // TODO: Call method to add a deposit
                 System.out.println("Add Deposit selected.\n");
                 InputHelper.addDeposit();
                 break;
             case "P":
-                // TODO: Call method to make a payment
                 System.out.println("Make Payment selected.\n");
                 InputHelper.makePayment();
                 break;
             case "L":
-                // TODO: Call method to view ledger
                 System.out.println("View Ledger selected.\n");
                 LedgerView.showLedgerScreen();
                 break;
