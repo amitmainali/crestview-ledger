@@ -17,41 +17,72 @@ public class ReportGenerator {
         Scanner scanner = new Scanner(System.in);
         String choice;
 
-        System.out.println("\n========================== Reports Menu =========================");
-        System.out.println("\t1) Month To Date");
-        System.out.println("\t2) Previous Month");
-        System.out.println("\t3) Year To Date");
-        System.out.println("\t4) Previous Year");
-        System.out.println("\t5) Search by Vendor");
-        System.out.println("\t6) Custom Search");
-        System.out.println("\t0) Back to Ledger");
-        System.out.print("\nEnter your choice: ");
-        choice = scanner.nextLine().trim();
+        while (true) {
+            System.out.println("\n========================== Reports Menu =========================");
+            System.out.println("\t1) Month To Date");
+            System.out.println("\t2) Previous Month");
+            System.out.println("\t3) Year To Date");
+            System.out.println("\t4) Previous Year");
+            System.out.println("\t5) Search by Vendor");
+            System.out.println("\t6) Custom Search");
+            System.out.println("\t0) Back to Ledger");
+            System.out.print("\nEnter your choice: ");
+            choice = scanner.nextLine().trim();
 
-        switch (choice) {
-            case "1":
-                reportMonthToDate();
-                break;
-            case "2":
-                reportPreviousMonth();
-                break;
-            case "3":
-                reportYearToDate();
-                break;
-            case "4":
-                reportPreviousYear();
-                break;
-            case "5":
-                searchByVendor();
-                break;
-            case "6":
-                customSearch();
-                break;
-            case "0":
-                LedgerView.showLedgerScreen();
-                break;
-            default:
-                System.out.println("Invalid choice. Please try again.");
+            switch (choice) {
+                case "1":
+                    reportMonthToDate();
+                    break;
+                case "2":
+                    reportPreviousMonth();
+                    break;
+                case "3":
+                    reportYearToDate();
+                    break;
+                case "4":
+                    reportPreviousYear();
+                    break;
+                case "5":
+                    searchByVendor();
+                    break;
+                case "6":
+                    customSearch();
+                    break;
+                case "0":
+                    LedgerView.showLedgerScreen();
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    continue;
+            }
+
+            System.out.print("\n\nPress Enter to continue...\n\n");
+            scanner.nextLine();
+
+            System.out.println("=================================================================");
+            System.out.println("What would you like to do next?");
+            System.out.println("\t1) View Another Report");
+            System.out.println("\t2) Go Back to Ledger Menu");
+            System.out.println("\t3) Go to Home Screen");
+            System.out.println("\t4) Exit Application");
+            System.out.print("\nEnter your choice: ");
+            String nextChoice = scanner.nextLine();
+
+            switch (nextChoice) {
+                case "1":
+                    continue;
+                case "2":
+                    LedgerView.showLedgerScreen();
+                    return;
+                case "3":
+                    return;
+                case "4":
+                    System.out.println("Exiting Crestview Ledger. Goodbye!");
+                    Main.running = false;
+                    return;
+                default:
+                    System.out.println("Invalid input. Returning to Reports Menu.");
+            }
         }
     }
 

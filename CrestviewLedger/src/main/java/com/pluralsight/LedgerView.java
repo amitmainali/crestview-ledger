@@ -41,44 +41,145 @@ public class LedgerView {
                 break;
             case "H":
                 System.out.println("Return Home selected.");
-                LedgerApp.showHomeScreen();
-                break;
+                return;
             default:
                 System.out.println("Invalid choice. Please try again.");
         }
     }
 
     public static void displayAllEntries() {
-        ArrayList<String> transactions = loadTransactions();
-        sortTransactions(transactions);
+        Scanner scanner = new Scanner(System.in);
 
-        for (int i = 0; i < transactions.size(); i++) {
-            System.out.println(transactions.get(i));
+        while (true) {
+            ArrayList<String> transactions = loadTransactions();
+            sortTransactions(transactions);
+
+            for (int i = 0; i < transactions.size(); i++) {
+                System.out.println(transactions.get(i));
+            }
+
+            System.out.print("\n\nPress Enter to continue...\n");
+            scanner.nextLine();
+
+            System.out.println("\n=================================================================");
+            System.out.println("What would you like to do next?");
+            System.out.println("\t1) View All Entries Again");
+            System.out.println("\t2) Go Back to Ledger Menu");
+            System.out.println("\t3) Go to Home Screen");
+            System.out.println("\t4) Exit Application");
+            System.out.print("\nEnter your choice: ");
+            String nextChoice = scanner.nextLine();
+
+            switch (nextChoice) {
+                case "1":
+                    continue;
+                case "2":
+                    LedgerView.showLedgerScreen();
+                    return;
+                case "3":
+                    return;
+                case "4":
+                    System.out.println("Exiting Crestview Ledger. Goodbye!");
+                    Main.running = false;
+                    return;
+                default:
+                    System.out.println("Invalid input. Returning to Ledger Menu.\n");
+                    LedgerView.showLedgerScreen();
+                    return;
+            }
         }
     }
 
     public static void displayDeposits() {
-        ArrayList<String> transactions = loadTransactions();
-        sortTransactions(transactions);
+        Scanner scanner = new Scanner(System.in);
 
-        for (int i = 0; i < transactions.size(); i++) {
-            String[] parts = transactions.get(i).split("\\|");
-            double amount = Double.parseDouble(parts[4]);
-            if (amount > 0) {
-                System.out.println(transactions.get(i));
+        while (true) {
+            ArrayList<String> transactions = loadTransactions();
+            sortTransactions(transactions);
+
+            for (int i = 0; i < transactions.size(); i++) {
+                String[] parts = transactions.get(i).split("\\|");
+                double amount = Double.parseDouble(parts[4]);
+                if (amount > 0) {
+                    System.out.println(transactions.get(i));
+                }
+            }
+
+            System.out.print("\n\nPress Enter to continue...\n");
+            scanner.nextLine();
+
+            System.out.println("\n=================================================================");
+            System.out.println("What would you like to do next?");
+            System.out.println("\t1) View Deposits Again");
+            System.out.println("\t2) Go Back to Ledger Menu");
+            System.out.println("\t3) Go to Home Screen");
+            System.out.println("\t4) Exit Application");
+            System.out.print("\nEnter your choice: ");
+            String nextChoice = scanner.nextLine();
+
+            switch (nextChoice) {
+                case "1":
+                    continue;
+                case "2":
+                    LedgerView.showLedgerScreen();
+                    return;
+                case "3":
+                    return;
+                case "4":
+                    System.out.println("Exiting Crestview Ledger. Goodbye!");
+                    Main.running = false;
+                    return;
+                default:
+                    System.out.println("Invalid input. Returning to Ledger Menu.\n");
+                    LedgerView.showLedgerScreen();
+                    return;
             }
         }
     }
 
     public static void displayPayments() {
-        ArrayList<String> transactions = loadTransactions();
-        sortTransactions(transactions);
+        Scanner scanner = new Scanner(System.in);
 
-        for (int i = 0; i < transactions.size(); i++) {
-            String[] parts = transactions.get(i).split("\\|");
-            double amount = Double.parseDouble(parts[4]);
-            if (amount < 0) {
-                System.out.println(transactions.get(i));
+        while (true) {
+            ArrayList<String> transactions = loadTransactions();
+            sortTransactions(transactions);
+
+            for (int i = 0; i < transactions.size(); i++) {
+                String[] parts = transactions.get(i).split("\\|");
+                double amount = Double.parseDouble(parts[4]);
+                if (amount < 0) {
+                    System.out.println(transactions.get(i));
+                }
+            }
+
+            System.out.print("\n\nPress Enter to continue...\n");
+            scanner.nextLine();
+
+            System.out.println("\n=================================================================");
+            System.out.println("What would you like to do next?");
+            System.out.println("\t1) View Payments Again");
+            System.out.println("\t2) Go Back to Ledger Menu");
+            System.out.println("\t3) Go to Home Screen");
+            System.out.println("\t4) Exit Application");
+            System.out.print("\nEnter your choice: ");
+            String nextChoice = scanner.nextLine();
+
+            switch (nextChoice) {
+                case "1":
+                    continue;
+                case "2":
+                    LedgerView.showLedgerScreen();
+                    return;
+                case "3":
+                    return;
+                case "4":
+                    System.out.println("Exiting Crestview Ledger. Goodbye!");
+                    Main.running = false;
+                    return;
+                default:
+                    System.out.println("Invalid input. Returning to Ledger Menu.\n");
+                    LedgerView.showLedgerScreen();
+                    return;
             }
         }
     }

@@ -3,7 +3,7 @@ package com.pluralsight;
 import java.util.Scanner;
 
 public class LedgerApp {
-    public static void showHomeScreen() {
+    public static boolean showHomeScreen() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\n========================== Home Screen ==========================");
@@ -30,9 +30,15 @@ public class LedgerApp {
                 break;
             case "X":
                 System.out.println("Exiting Crestview Ledger. Goodbye!");
-                break;
+                return false;
             default:
                 System.out.println("Invalid selection. Please try again.\n");
         }
+
+        if(!Main.running) {
+            return false;
+        }
+
+        return true;
     }
 }
