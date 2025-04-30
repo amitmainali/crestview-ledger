@@ -51,8 +51,8 @@ public class LedgerView {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            ArrayList<String> transactions = loadTransactions();
-            sortTransactions(transactions);
+            ArrayList<Transaction> transactions = loadTransactions();
+            Collections.reverse(transactions);
 
             for (int i = 0; i < transactions.size(); i++) {
                 System.out.println(transactions.get(i));
@@ -74,7 +74,7 @@ public class LedgerView {
                 case "1":
                     continue;
                 case "2":
-                    LedgerView.showLedgerScreen();
+                    showLedgerScreen();
                     return;
                 case "3":
                     return;
@@ -84,7 +84,7 @@ public class LedgerView {
                     return;
                 default:
                     System.out.println("Invalid input. Returning to Ledger Menu.\n");
-                    LedgerView.showLedgerScreen();
+                    showLedgerScreen();
                     return;
             }
         }
@@ -94,13 +94,11 @@ public class LedgerView {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            ArrayList<String> transactions = loadTransactions();
-            sortTransactions(transactions);
+            ArrayList<Transaction> transactions = loadTransactions();
+            Collections.reverse(transactions);
 
             for (int i = 0; i < transactions.size(); i++) {
-                String[] parts = transactions.get(i).split("\\|");
-                double amount = Double.parseDouble(parts[4]);
-                if (amount > 0) {
+                if (transactions.get(i).getAmount() > 0) {
                     System.out.println(transactions.get(i));
                 }
             }
@@ -121,7 +119,7 @@ public class LedgerView {
                 case "1":
                     continue;
                 case "2":
-                    LedgerView.showLedgerScreen();
+                    showLedgerScreen();
                     return;
                 case "3":
                     return;
@@ -131,7 +129,7 @@ public class LedgerView {
                     return;
                 default:
                     System.out.println("Invalid input. Returning to Ledger Menu.\n");
-                    LedgerView.showLedgerScreen();
+                    showLedgerScreen();
                     return;
             }
         }
@@ -141,13 +139,11 @@ public class LedgerView {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            ArrayList<String> transactions = loadTransactions();
-            sortTransactions(transactions);
+            ArrayList<Transaction> transactions = loadTransactions();
+            Collections.reverse(transactions);
 
             for (int i = 0; i < transactions.size(); i++) {
-                String[] parts = transactions.get(i).split("\\|");
-                double amount = Double.parseDouble(parts[4]);
-                if (amount < 0) {
+                if (transactions.get(i).getAmount() < 0) {
                     System.out.println(transactions.get(i));
                 }
             }
@@ -168,7 +164,7 @@ public class LedgerView {
                 case "1":
                     continue;
                 case "2":
-                    LedgerView.showLedgerScreen();
+                    showLedgerScreen();
                     return;
                 case "3":
                     return;
@@ -178,27 +174,28 @@ public class LedgerView {
                     return;
                 default:
                     System.out.println("Invalid input. Returning to Ledger Menu.\n");
-                    LedgerView.showLedgerScreen();
+                    showLedgerScreen();
                     return;
             }
         }
     }
 
-    private static ArrayList<String> loadTransactions() {
-        ArrayList<String> transactions = new ArrayList<>();
+    private static ArrayList<Transaction> loadTransactions() {
+        ArrayList<Transaction> transactions = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("data/transactions.csv"))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                transactions.add(line);
+                String[] parts = line.split("\\|");
+                String date = parts[0];
+                String time = parts[1];
+                String description = parts[2];
+                String vendor = parts[3];
+                double amount = Double.parseDouble(parts[4]);
+                transactions.add(new Transaction(date, time, description, vendor, amount));
             }
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
         return transactions;
-    }
-
-    private static void sortTransactions(ArrayList<String> transactions) {
-        Collections.sort(transactions);
-        Collections.reverse(transactions);
     }
 }

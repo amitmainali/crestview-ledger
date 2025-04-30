@@ -25,11 +25,11 @@ public class InputHelper {
             String date = LocalDate.now().toString();
             String time = LocalTime.now().withNano(0).toString();
 
-            String newEntry = date + "|" + time + "|" + description + "|" + vendor + "|" + String.format("%.2f", amount);
+            Transaction transaction = new Transaction(date, time, description, vendor, amount);
 
             try (BufferedWriter writer = new BufferedWriter(new FileWriter("data/transactions.csv", true))) {
                 writer.newLine();
-                writer.write(newEntry);
+                writer.write(transaction.toString());
                 System.out.println("Deposit added successfully!");
             } catch (IOException e) {
                 System.out.println("Error: " + e.getMessage());
@@ -82,11 +82,11 @@ public class InputHelper {
             String date = LocalDate.now().toString();
             String time = LocalTime.now().withNano(0).toString();
 
-            String newEntry = date + "|" + time + "|" + description + "|" + vendor + "|" + String.format("%.2f", amount);
+            Transaction transaction = new Transaction(date, time, description, vendor, amount);
 
             try (BufferedWriter writer = new BufferedWriter(new FileWriter("data/transactions.csv", true))) {
                 writer.newLine();
-                writer.write(newEntry);
+                writer.write(transaction.toString());
                 System.out.println("Payment recorded successfully!");
             } catch (IOException e) {
                 System.out.println("Error: " + e.getMessage());
